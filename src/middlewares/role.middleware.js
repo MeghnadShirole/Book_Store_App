@@ -3,7 +3,7 @@ export const admin = (req, res, next) => {
     next();
 }
 
-export const admin = (req, res, next) => {
+export const user = (req, res, next) => {
     req.body['role'] = "user";
     next();
 }
