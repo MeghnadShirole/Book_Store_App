@@ -32,6 +32,31 @@
                     }
                 }
             }
+        },
+        "/users/userRegistration": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Register an User",
+                "produces": [],
+                "parameters": [{
+                    "name": "User Registration",
+                    "in": "body",
+                    "description": "Registration for User",
+                    "required": true,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/Registration"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
