@@ -1,0 +1,56 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Book Store App"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1/",
+    "schemes": ["http", "https"],
+    "paths": {
+        "/users/adminRegistration": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Register an Admin",
+                "produces": [],
+                "parameters": [{
+                    "name": "Admin Registration",
+                    "in": "body",
+                    "description": "Registration for User",
+                    "required": true,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/Registration"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Registration": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
