@@ -47,7 +47,7 @@ export const resetPasswordValidator = (req, res, next) => {
 };
 
 export const loginValidator = (req, res, next) => {
-    const password = Joi.object({
+    const login = Joi.object({
         email: Joi.string()
             .email()
             .required(),
@@ -57,7 +57,7 @@ export const loginValidator = (req, res, next) => {
             .required(),
     });
 
-    const { error, value } = password.validate(req.body);
+    const { error, value } = login.validate(req.body);
     if (error) {
         next(error);
     } else {

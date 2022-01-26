@@ -8,12 +8,14 @@ import userRoute from './user.route';
  * @returns router
  */
 const routes = () => {
-  router.get('/', (req, res) => {
-    res.json('Welcome');
-  });
-  router.use('/users', userRoute);
+    router.get('/', (req, res) => {
+        res.json('Welcome');
+    });
+    router.use('/users', userRoute);
+    router.use('/books', bookRoute);
 
-  return router;
+
+    return router;
 };
 
 export default routes;
