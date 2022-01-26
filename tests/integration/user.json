@@ -18,5 +18,25 @@
         "lastname": "",
         "email": "",
         "password": ""
+    },
+    "validUserRegistration": {
+        "firstname": "Ravindra",
+        "lastname": "Shirole",
+        "email": "gonima6068@icesilo.com",
+        "password": "Ravindra@1565"
+    },
+
+    "invalidUserRegistration": {
+        "firstname": "ab",
+        "lastname": "ghy",
+        "email": "tgdyudh",
+        "password": "hytgdd"
+    },
+
+    "emptyUserRegistration": {
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "password": ""
     }
 }

@@ -64,4 +64,36 @@ describe('User APIs Test', () => {
                 });
         });
     });
+
+    describe('POST /userRegistration', () => {
+        it('given new user when added should return status 201', (done) => {
+            request(app)
+                .post('/api/v1/users/userRegistration')
+                .send(userData.validUserRegistration)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.CREATED);
+                    done();
+                });
+        });
+
+        it('given user when not registered should return status 500', (done) => {
+            request(app)
+                .post('/api/v1/users/userRegistration')
+                .send(userData.invalidUserRegistration)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.INTERNAL_SERVER_ERROR);
+                    done();
+                });
+        });
+
+        it('given user when provides empty details should return status 500', (done) => {
+            request(app)
+                .post('/api/v1/users/userRegistration')
+                .send(userData.emptyUserRegistration)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.INTERNAL_SERVER_ERROR);
+                    done();
+                });
+        });
+    });
 });
