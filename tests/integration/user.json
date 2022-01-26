@@ -1,0 +1,83 @@
+{
+    "validAdminRegistration": {
+        "firstname": "Meghnad",
+        "lastname": "Shirole",
+        "email": "meghnadshirole@gmail.com",
+        "password": "Megh@1827"
+    },
+
+    "invalidAdminRegistration": {
+        "firstname": "ab",
+        "lastname": "ghy",
+        "email": "tgdyudh",
+        "password": "hytgdd"
+    },
+
+    "emptyAdminRegistration": {
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "password": ""
+    },
+    "validUserRegistration": {
+        "firstname": "Ravindra",
+        "lastname": "Shirole",
+        "email": "gonima6068@icesilo.com",
+        "password": "Ravindra@1565"
+    },
+
+    "invalidUserRegistration": {
+        "firstname": "ab",
+        "lastname": "ghy",
+        "email": "tgdyudh",
+        "password": "hytgdd"
+    },
+
+    "emptyUserRegistration": {
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "password": ""
+    },
+
+    "validAdminLogin": {
+        "email": "meghnadshirole@gmail.com",
+        "password": "Megh@1827"
+    },
+
+    "invalidAdminLogin": {
+        "email": "meghnadshirole@gmail.com",
+        "password": "xyz"
+    },
+    "invalidLogin": {
+        "email": "abc",
+        "password": "xyz"
+    },
+
+    "validUserLogin": {
+        "email": "gonima6068@icesilo.com",
+        "password": "Ravindra@1565"
+    },
+
+    "invalidUserLogin": {
+        "email": "gonima6068@icesilo.com",
+        "password": "xyz"
+    },
+
+    "forgetPassword": {
+        "email": "gonima6068@icesilo.com"
+    },
+
+    "invalidEmail": {
+        "email": "ms@gmail.com"
+    },
+
+    "validPassword": {
+        "password": "Ravi@1565"
+    },
+
+    "invalidPassword": {
+        "password": "ms"
+    }
+
+}
