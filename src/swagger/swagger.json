@@ -113,6 +113,31 @@
                     }
                 }
             }
+        },
+        "/users/forgetPassword": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Forget password",
+                "produces": [],
+                "parameters": [{
+                    "name": "Forget Password",
+                    "in": "body",
+                    "description": "Forget Password",
+                    "required": false,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/ForgetPassword"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Mail sent to your register email Id"
+                    },
+                    "500": {
+                        "description": "could not send mail"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -140,6 +165,14 @@
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "ForgetPassword": {
+            "type": "object",
+            "properties": {
+                "email": {
                     "type": "string"
                 }
             }
