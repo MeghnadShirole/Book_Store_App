@@ -70,5 +70,10 @@
 
     "invalidEmail": {
         "email": "ms@gmail.com"
+    },
+
+    "validPassword": {
+        "password": "Ravi@1565"
     }
+
 }

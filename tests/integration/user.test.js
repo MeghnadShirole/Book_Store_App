@@ -189,4 +189,27 @@ describe('User APIs Test', () => {
                 });
         });
     });
+
+    // reset password test
+    describe('POST /resetPassword', () => {
+        it('given user when able to reset password should return status 202', (done) => {
+            request(app)
+                .post('/api/v1/users/resetPassword/' + `${token}`)
+                .send(userData.validPassword)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.ACCEPTED);
+                    done();
+                });
+        });
+
+        it('given user when not able to reset password should return status 500', (done) => {
+            request(app)
+                .post('/api/v1/users/resetPassword/' + `${token}`)
+                .send(userData.invalidPassword)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.INTERNAL_SERVER_ERROR);
+                    done();
+                });
+        });
+    });
 });
