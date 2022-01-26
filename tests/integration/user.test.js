@@ -96,4 +96,38 @@ describe('User APIs Test', () => {
                 });
         });
     });
+
+    // user login test
+    describe('POST /adminLogin', () => {
+        it('given user when logged in should return status 200', (done) => {
+            request(app)
+                .post('/api/v1/users/adminLogin')
+                .send(userData.validAdminLogin)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.OK);
+                    expect(res.body.data).to.be.not.null;
+                    done();
+                });
+        });
+
+        it('given user when denied login should return status 401', (done) => {
+            request(app)
+                .post('/api/v1/users/adminLogin')
+                .send(userData.invalidAdminLogin)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.UNAUTHORIZED);
+                    done();
+                });
+        });
+
+        it('given user when not found in database should return status 404', (done) => {
+            request(app)
+                .post('/api/v1/users/adminLogin')
+                .send(userData.invalidLogin)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.NOT_FOUND);
+                    done();
+                });
+        });
+    });
 });

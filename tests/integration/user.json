@@ -38,5 +38,19 @@
         "lastname": "",
         "email": "",
         "password": ""
+    },
+
+    "validAdminLogin": {
+        "email": "meghnadshirole@gmail.com",
+        "password": "Megh@1827"
+    },
+
+    "invalidAdminLogin": {
+        "email": "meghnadshirole@gmail.com",
+        "password": "xyz"
+    },
+    "invalidLogin": {
+        "email": "abc",
+        "password": "xyz"
     }
 }
