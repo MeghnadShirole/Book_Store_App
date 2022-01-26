@@ -39,7 +39,7 @@ export const login = (req, res, next) => {
                 return res.status(HttpStatus.OK).send({
                     code: HttpStatus.OK,
                     data: result,
-                    message: 'Logged Successful'
+                    message: 'Login Successful'
                 });
             }
         })

@@ -57,6 +57,62 @@
                     }
                 }
             }
+        },
+        "/users/adminLogin": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Admin login",
+                "produces": [],
+                "parameters": [{
+                    "name": "Admin login",
+                    "in": "body",
+                    "description": "login for Admin",
+                    "required": true,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/Login"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    },
+                    "401": {
+                        "description": "Access Denied"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/users/userLogin": {
+            "post": {
+                "tags": ["User"],
+                "summary": "User login",
+                "produces": [],
+                "parameters": [{
+                    "name": "User login",
+                    "in": "body",
+                    "description": "login for User",
+                    "required": true,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/Login"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    },
+                    "401": {
+                        "description": "Access Denied"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -69,6 +125,17 @@
                 "lastname": {
                     "type": "string"
                 },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "type": "object",
+            "properties": {
                 "email": {
                     "type": "string"
                 },
