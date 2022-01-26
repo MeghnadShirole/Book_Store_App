@@ -52,5 +52,15 @@
     "invalidLogin": {
         "email": "abc",
         "password": "xyz"
+    },
+
+    "validUserLogin": {
+        "email": "gonima6068@icesilo.com",
+        "password": "Ravindra@1565"
+    },
+
+    "invalidUserLogin": {
+        "email": "gonima6068@icesilo.com",
+        "password": "xyz"
     }
 }
