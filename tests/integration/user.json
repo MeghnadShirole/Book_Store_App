@@ -1,0 +1,22 @@
+{
+    "validAdminRegistration": {
+        "firstname": "Meghnad",
+        "lastname": "Shirole",
+        "email": "meghnadshirole@gmail.com",
+        "password": "Megh@1827"
+    },
+
+    "invalidAdminRegistration": {
+        "firstname": "ab",
+        "lastname": "ghy",
+        "email": "tgdyudh",
+        "password": "hytgdd"
+    },
+
+    "emptyAdminRegistration": {
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "password": ""
+    }
+}
