@@ -9,10 +9,10 @@ export const hashPassword = (userData) => {
 
 export const generateToken = (result) => {
     if (result.role == "admin") {
-        const adminToken = jwt.sign({ "email": result.email, "_id": result._id }, process.env.ADMIN_KEY)
+        const adminToken = jwt.sign({ "email": result.email, "role": result.role, "_id": result._id }, process.env.ADMIN_KEY)
         return (adminToken);
     } else {
-        const userToken = jwt.sign({ "email": result.email, "_id": result._id }, process.env.USER_KEY)
+        const userToken = jwt.sign({ "email": result.email, "role": result.role, "_id": result._id }, process.env.USER_KEY)
         return ("Logged in as User" + userToken);
     }
 }
