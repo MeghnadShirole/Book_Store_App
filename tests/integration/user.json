@@ -74,6 +74,10 @@
 
     "validPassword": {
         "password": "Ravi@1565"
+    },
+
+    "invalidPassword": {
+        "password": "ms"
     }
 
 }
