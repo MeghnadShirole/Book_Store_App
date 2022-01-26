@@ -31,6 +31,7 @@ describe('User APIs Test', () => {
 
     const jsonFileUser = fs.readFileSync('tests/integration/user.json')
     const userData = JSON.parse(jsonFileUser);
+    let token = '';
 
     //register user test
     describe('POST /adminRegistration', () => {
@@ -159,6 +160,31 @@ describe('User APIs Test', () => {
                 .send(userData.invalidLogin)
                 .end((err, res) => {
                     expect(res.statusCode).to.be.equal(HttpStatus.NOT_FOUND);
+                    done();
+                });
+        });
+    });
+
+    // forget password test
+    describe('POST /forgerPassword', () => {
+        it('given user when provides valid email should get mail should return status 200', (done) => {
+            request(app)
+                .post('/api/v1/users/forgetPassword')
+                .send(userData.forgetPassword)
+                .end((err, res) => {
+                    token = res.body.data;
+                    expect(res.statusCode).to.be.equal(HttpStatus.OK);
+                    expect(err).to.not.exist;
+                    done();
+                });
+        });
+
+        it('given user when provides invalid email should return status 500', (done) => {
+            request(app)
+                .post('/api/v1/users/forgetPassword')
+                .send(userData.invalidEmail)
+                .end((err, res) => {
+                    expect(res.statusCode).to.be.equal(HttpStatus.INTERNAL_SERVER_ERROR);
                     done();
                 });
         });
