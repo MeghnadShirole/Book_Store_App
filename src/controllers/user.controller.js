@@ -47,3 +47,30 @@ export const login = (req, res, next) => {
         next(error);
     }
 }
+
+/**
+ * Controller for forget password
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ */
+export const forgetPassword = (req, res) => {
+    try {
+        UserService.forgetPassword(req.body, (err, result) => {
+            if (err) {
+                return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
+                    code: HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: err,
+                    message: 'could not send a mail'
+                });
+            } else {
+                return res.status(HttpStatus.OK).send({
+                    code: HttpStatus.OK,
+                    data: result,
+                    message: 'mail sent to your registerd email Id'
+                });
+            }
+        })
+    } catch (err) {
+        res.send(err);
+    }
+}

@@ -17,4 +17,7 @@ router.post('/adminLogin', role.checkAdmin, userController.login);
 //route for user login
 router.post('/userLogin', role.checkUser, userController.login);
 
+//route for forget password
+router.post('/forgetPassword', userController.forgetPassword);
+
 export default router;

@@ -16,3 +16,8 @@ export const generateToken = (result) => {
         return ("Logged in as User" + userToken);
     }
 }
+
+export const forgetPasswordToken = (result) => {
+    const token = jwt.sign({ "_id": result._id }, process.env.FORGET_PASSWORD_KEY);
+    return token;
+}
