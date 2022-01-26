@@ -19,3 +19,31 @@ export const newUser = (req, res, next) => {
         next(error);
     }
 };
+
+/**
+ * Controller for login
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+export const login = (req, res, next) => {
+    try {
+        UserService.login(req.body, (error, result) => {
+            if (error) {
+                return res.status(HttpStatus.UNAUTHORIZED).send({
+                    code: HttpStatus.UNAUTHORIZED,
+                    error: error,
+                    message: 'Invalid Username or Password'
+                });
+            } else {
+                return res.status(HttpStatus.OK).send({
+                    code: HttpStatus.OK,
+                    data: result,
+                    message: 'Logged Successful'
+                });
+            }
+        })
+    } catch (error) {
+        next(error);
+    }
+}
