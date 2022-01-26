@@ -35,3 +35,28 @@ export const checkAdmin = (req, res, next) => {
         }
     });
 }
+
+export const checkUser = (req, res, next) => {
+    User.findOne({
+        "email": req.body.email
+    }, (error, result) => {
+        if (error) {
+            return (error);
+        } else if (result != null) {
+            const role = result.role;
+            if (role == "user") {
+                next();
+            } else {
+                res.status(HttpStatus.UNAUTHORIZED).send({
+                    code: HttpStatus.UNAUTHORIZED,
+                    message: 'Access Denied'
+                });
+            }
+        } else {
+            res.status(HttpStatus.NOT_FOUND).send({
+                code: HttpStatus.NOT_FOUND,
+                message: 'User not found'
+            });
+        }
+    });
+}
