@@ -68,3 +68,19 @@ export const forgetPassword = async(userData, callback) => {
         }
     });
 }
+
+//Reset Password
+export const resetPassword = async(_id, userData) => {
+    const password = utils.hashPassword(userData);
+    const data = await User.findByIdAndUpdate({
+        _id: _id.userId
+    }, {
+        $set: {
+            password: password
+        },
+    });
+    userData, {
+        new: true
+    }
+    return data;
+};

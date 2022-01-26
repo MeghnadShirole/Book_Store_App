@@ -74,3 +74,22 @@ export const forgetPassword = (req, res) => {
         res.send(err);
     }
 }
+
+/**
+ * Controller for reset password
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+export const resetPassword = async(req, res, next) => {
+    try {
+        const data = await UserService.resetPassword(req.params, req.body);
+        res.status(HttpStatus.ACCEPTED).json({
+            code: HttpStatus.ACCEPTED,
+            data: data.email,
+            message: 'New password has been set successfully for above email'
+        });
+    } catch (error) {
+        next(error);
+    }
+};
