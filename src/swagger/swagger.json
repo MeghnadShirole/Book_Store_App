@@ -11,12 +11,12 @@
         "/users/adminRegistration": {
             "post": {
                 "tags": ["User"],
-                "summary": "Register an Admin",
+                "summary": "This api will be used to register an Admin",
                 "produces": [],
                 "parameters": [{
                     "name": "Admin Registration",
                     "in": "body",
-                    "description": "Registration for User",
+                    "description": "Registration for Admin",
                     "required": true,
                     "type": "string",
                     "schema": {
@@ -36,7 +36,7 @@
         "/users/userRegistration": {
             "post": {
                 "tags": ["User"],
-                "summary": "Register an User",
+                "summary": "This api will be used to register an User",
                 "produces": [],
                 "parameters": [{
                     "name": "User Registration",
@@ -170,6 +170,135 @@
                     }
                 }
             }
+        },
+        "/books": {
+            "post": {
+                "tags": ["Books"],
+                "summary": "Add a book into database",
+                "produces": [],
+                "parameters": [{
+                    "name": "create book",
+                    "in": "body",
+                    "description": "create book",
+                    "required": false,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/Book"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Book added succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [{
+                    "JWT": []
+                }]
+            },
+            "get": {
+                "tags": ["Books"],
+                "summary": "Get all books",
+                "produces": [],
+                "parameters": [{
+                    "name": "Get books",
+                    "description": "Get all books for user",
+                    "required": false
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Books fetched successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/books/{_id}": {
+            "get": {
+                "tags": ["Books"],
+                "summary": "Get a single book by it's id",
+                "produces": [],
+                "parameters": [{
+                    "name": "_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Book fetched successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Books"],
+                "summary": "Update a book for User",
+                "produces": [],
+                "parameters": [{
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "update book",
+                        "in": "body",
+                        "description": "update book",
+                        "required": false,
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateBook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Book updated succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [{
+                    "JWT": []
+                }]
+            },
+            "delete": {
+                "tags": ["Books"],
+                "summary": "Delete a book",
+                "produces": [],
+                "parameters": [{
+                    "name": "_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "202": {
+                        "description": "book deleted succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [{
+                    "JWT": []
+                }]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "name": "token",
+            "in": "header"
         }
     },
     "definitions": {
@@ -213,6 +342,46 @@
             "type": "object",
             "properties": {
                 "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Book": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "UpdateBook": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "string"
+                },
+                "description": {
                     "type": "string"
                 }
             }
