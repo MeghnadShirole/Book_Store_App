@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import * as mailSender from '../middlewares/nodemailer.middleware'
 
 //User Registration
-export const registration = (userData) => {
+export const registration = async(userData) => {
     const password = utils.hashPassword(userData);
     const newUser = new User({
         "firstname": userData.firstname,
