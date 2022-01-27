@@ -12,3 +12,9 @@ export const newBook = async(bookData) => {
     const data = await newbook.save(bookData);
     return data;
 }
+
+//get all books
+export const getAllBooks = async() => {
+    const data = await Book.find();
+    return data;
+}

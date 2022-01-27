@@ -13,7 +13,7 @@ export const generateToken = (result) => {
         return (adminToken);
     } else {
         const userToken = jwt.sign({ "email": result.email, "role": result.role, "_id": result._id }, process.env.USER_KEY)
-        return ("Logged in as User" + userToken);
+        return (userToken);
     }
 }
 
