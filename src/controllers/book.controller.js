@@ -60,3 +60,23 @@ export const getBook = async(req, res, next) => {
         next(error);
     }
 };
+
+/**
+ * Controller to update a single book
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+
+export const updateBook = async(req, res, next) => {
+    try {
+        const data = await bookService.updateBook(req.params._id, req.body);
+        res.status(HttpStatus.ACCEPTED).json({
+            code: HttpStatus.ACCEPTED,
+            data: data,
+            message: 'Book updated successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
+};

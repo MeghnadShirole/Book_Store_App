@@ -24,3 +24,15 @@ export const getBook = async(_id) => {
     const data = await Book.findById({ _id });
     return data;
 }
+
+//update book
+export const updateBook = async(_id, bookdata) => {
+    const data = await Book.findByIdAndUpdate({
+            _id
+        },
+        bookdata, {
+            new: true
+        }
+    );
+    return data;
+};
