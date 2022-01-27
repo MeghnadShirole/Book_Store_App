@@ -11,4 +11,7 @@ router.post('', newBookValidator, adminAuth, bookController.newBook)
 //route to get all books
 router.get('', bookController.getAllBooks);
 
+//route to get a single book by their book id
+router.get('/:_id', bookController.getBook);
+
 export default router;
