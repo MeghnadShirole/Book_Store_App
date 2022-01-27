@@ -17,4 +17,7 @@ router.get('/:_id', bookController.getBook);
 //route to update a single book by their book id
 router.put('/:_id', adminAuth, bookController.updateBook);
 
+//route to delete a single book by their book id
+router.delete('/:_id', adminAuth, bookController.deleteBook);
+
 export default router;

@@ -36,3 +36,9 @@ export const updateBook = async(_id, bookdata) => {
     );
     return data;
 };
+
+//delete a book
+export const deleteBook = async(id) => {
+    await Book.findByIdAndDelete(id);
+    return '';
+};

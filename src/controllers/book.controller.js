@@ -80,3 +80,23 @@ export const updateBook = async(req, res, next) => {
         next(error);
     }
 };
+
+/**
+ * Controller to delete a single note
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+
+export const deleteBook = async(req, res, next) => {
+    try {
+        await bookService.deleteBook(req.params._id);
+        res.status(HttpStatus.ACCEPTED).json({
+            code: HttpStatus.ACCEPTED,
+            data: [],
+            message: 'Book deleted successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
+};
