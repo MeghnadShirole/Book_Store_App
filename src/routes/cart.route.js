@@ -13,4 +13,6 @@ router.post('/removeFromCart/:_id', userAuth, cartController.removeBook)
 //route to get cart for user
 router.get('', userAuth, cartController.getCart)
 
+//route to modify cart if book is purchased
+router.put('/isPurchased', userAuth, cartController.bookPruchased)
 export default router;

@@ -32,6 +32,7 @@ export const addBook = async(_id, cartData) => {
                 }, {
                     book: existingCart.book,
                     cart_total: existingCart.cart_total,
+                    isPurchased: false
                 }).exec();
                 updatedCart, { upsert: true },
                 await Book.findByIdAndUpdate({
@@ -61,6 +62,7 @@ export const addBook = async(_id, cartData) => {
                     $set: {
                         book: existingCart.book,
                         cart_total: existingCart.cart_total + book.quantity * book.price,
+                        isPurchased: false
                     },
                 });
                 cart, {
@@ -210,6 +212,34 @@ export const getCart = async(cartData) => {
 
     if (cart) {
         return cart;
+    } else {
+        res.status(HttpStatus.NOT_FOUND).json({
+            code: HttpStatus.NOT_FOUND,
+            message: 'Cart Not Found'
+        });
+    }
+}
+
+//modify cart if book is purchased
+export const bookPurchased = async(cartData) => {
+    const existingCart = await Cart.findOne({
+        userId: cartData.userId
+    });
+
+    if (existingCart) {
+        const data = await Cart.findByIdAndUpdate({
+            _id: existingCart._id
+        }, {
+            $set: {
+                isPurchased: true,
+                book: [],
+                cart_total: 0
+            }
+        });
+        existingCart, {
+            new: true
+        }
+        return data;
     } else {
         res.status(HttpStatus.NOT_FOUND).json({
             code: HttpStatus.NOT_FOUND,

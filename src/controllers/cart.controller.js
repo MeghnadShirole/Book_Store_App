@@ -59,3 +59,23 @@ export const getCart = async(req, res, next) => {
         next(error);
     }
 };
+
+/**
+ * Controller for modifying cart if book purchased
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+
+export const bookPruchased = async(req, res, next) => {
+    try {
+        const data = await cartService.bookPurchased(req.body);
+        res.status(HttpStatus.OK).json({
+            code: HttpStatus.OK,
+            data: data,
+            message: 'Order placed successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
+};
