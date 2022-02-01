@@ -39,3 +39,23 @@ export const removeBook = async(req, res, next) => {
         next(error);
     }
 };
+
+/**
+ * Controller to the get the cart for user
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+
+export const getCart = async(req, res, next) => {
+    try {
+        const data = await cartService.getCart(req.body);
+        res.status(HttpStatus.OK).json({
+            code: HttpStatus.OK,
+            data: data,
+            message: 'Cart fetched successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
+};
