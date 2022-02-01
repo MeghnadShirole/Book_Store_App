@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
 
-const cartSchema = new Schema({
+const wishlistSchema = new Schema({
         userId: {
 
         },
-        book: [{
+        books: [{
             bookId: {
 
             },
@@ -16,9 +16,6 @@ const cartSchema = new Schema({
             },
             price: {
                 type: Number,
-            },
-            description: {
-                type: String,
             }
         }]
     },
@@ -28,4 +25,4 @@ const cartSchema = new Schema({
         versionKey: false
     });
 
-export default model('Cart', cartSchema)
+export default model('Wishlist', wishlistSchema)
