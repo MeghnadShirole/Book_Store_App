@@ -2,7 +2,7 @@ import HttpStatus from 'http-status-codes';
 import * as cartService from '../services/cart.service';
 
 /**
- * Controller to create a new book
+ * Controller to add a book in the cart
  * @param  {object} req - request object
  * @param {object} res - response object
  * @param {Function} next
@@ -15,6 +15,25 @@ export const addBook = async(req, res, next) => {
             code: HttpStatus.CREATED,
             data: data,
             message: 'Book added successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * Controller to remove a book from
+ * @param  {object} req - request object
+ * @param {object} res - response object
+ * @param {Function} next
+ */
+export const removeBook = async(req, res, next) => {
+    try {
+        const data = await cartService.removeBook(req.params._id, req.body);
+        res.status(HttpStatus.ACCEPTED).json({
+            code: HttpStatus.ACCEPTED,
+            data: data,
+            message: 'Book removed successfully'
         });
     } catch (error) {
         next(error);

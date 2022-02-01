@@ -1,7 +1,7 @@
 import Cart from '../models/cart.model';
 import Book from '../models/book.model'
 
-//create a new book
+//add a bookto cart
 export const addBook = async(_id, cartData) => {
     const book = await Book.findOne({
         _id
@@ -105,5 +105,84 @@ export const addBook = async(_id, cartData) => {
             }
             return newCart;
         }
+    }
+}
+
+//remover a book from cart
+export const removeBook = async(_id, cartData) => {
+
+    const book = await Book.findOne({
+        _id
+    });
+
+    const existingCart = await Cart.findOne({
+        userId: cartData.userId
+    });
+
+    if (existingCart) {
+        // findBook
+        // find index
+        // remove index
+        let bookInCart = existingCart.book.find(book => book.bookId == _id);
+        if (!bookInCart) return;
+        const index = existingCart.book
+            .map(book => book.bookId)
+            .indexOf(bookInCart.bookId);
+
+        if (bookInCart.quantity == 1) {
+            existingCart.book.splice(index, 1);
+            // return updated book array,
+            // add quantity to original book schema
+            await Book.findByIdAndUpdate({
+                _id
+            }, {
+                $set: {
+                    quantity: book.quantity + 1
+                },
+            });
+            book, { new: true }
+            // minus cart total
+            await Cart.findByIdAndUpdate({
+                _id: existingCart._id
+            }, {
+                $set: {
+                    book: existingCart.book,
+                    cart_total: existingCart.cart_total - bookInCart.price
+                },
+            });
+            existingCart, {
+                new: true
+            }
+            return existingCart;
+        } else {
+            bookInCart.quantity -= 1
+            console.log("existingCart", existingCart.book);
+
+            // return updated book array,
+            // add quantity to original book schema
+            await Book.findByIdAndUpdate({
+                _id
+            }, {
+                $set: {
+                    quantity: book.quantity + 1
+                },
+            });
+            book, { new: true }
+        }
+        // minus cart total
+        await Cart.findByIdAndUpdate({
+            _id: existingCart._id
+        }, {
+            $set: {
+                book: existingCart.book,
+                cart_total: existingCart.cart_total - bookInCart.price
+            },
+        });
+        existingCart, {
+            new: true
+        }
+        return existingCart
+    } else {
+        return (`Book not found`)
     }
 }
