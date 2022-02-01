@@ -1,5 +1,6 @@
 import Cart from '../models/cart.model';
 import Book from '../models/book.model'
+import HttpStatus from 'http-status-codes';
 
 //add a bookto cart
 export const addBook = async(_id, cartData) => {
@@ -15,7 +16,10 @@ export const addBook = async(_id, cartData) => {
 
     if (existingCart) {
         if (availableQuantity == 0) {
-            return (`Sorry..We're out of stock`)
+            res.status(HttpStatus.NO_CONTENT).json({
+                code: HttpStatus.NO_CONTENT,
+                message: `Sorry.We're out of stock`
+            });
         } else {
             const existingBook = existingCart.book.find(bookInCart => bookInCart.bookId == _id)
 
@@ -77,7 +81,10 @@ export const addBook = async(_id, cartData) => {
         }
     } else {
         if (availableQuantity == 0) {
-            return (`Sorry..We're out of stock`)
+            res.status(HttpStatus.NO_CONTENT).json({
+                code: HttpStatus.NO_CONTENT,
+                message: `Sorry.We're out of stock`
+            });
         } else {
 
             book.quantity = 1;
@@ -131,6 +138,12 @@ export const removeBook = async(_id, cartData) => {
 
         if (bookInCart.quantity == 1) {
             existingCart.book.splice(index, 1);
+            if (existingCart.book.length == 0) {
+                await Cart.findByIdAndDelete({
+                    _id: existingCart._id
+                });
+                return '';
+            }
             // return updated book array,
             // add quantity to original book schema
             await Book.findByIdAndUpdate({
@@ -156,7 +169,6 @@ export const removeBook = async(_id, cartData) => {
             return existingCart;
         } else {
             bookInCart.quantity -= 1
-            console.log("existingCart", existingCart.book);
 
             // return updated book array,
             // add quantity to original book schema
@@ -183,6 +195,25 @@ export const removeBook = async(_id, cartData) => {
         }
         return existingCart
     } else {
-        return (`Book not found`)
+        res.status(HttpStatus.NOT_FOUND).json({
+            code: HttpStatus.NOT_FOUND,
+            message: 'Book not found'
+        });
+    }
+}
+
+//get a cart for user
+export const getCart = async(cartData) => {
+    const cart = await Cart.findOne({
+        userId: cartData.userId
+    });
+
+    if (cart) {
+        return cart;
+    } else {
+        res.status(HttpStatus.NOT_FOUND).json({
+            code: HttpStatus.NOT_FOUND,
+            message: 'Cart Not Found'
+        });
     }
 }
