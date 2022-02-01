@@ -72,3 +72,41 @@ export const adminAuth = (req, res, next) => {
         });
     }
 }
+
+// User Authentication for cart crud
+export const userAuth = (req, res, next) => {
+    const userToken = req.headers['token'];
+    if (userToken) {
+        /**
+         * @description:verifies secret key and checks expression
+         **/
+        jwt.verify(userToken, process.env.USER_KEY, (err, decode) => {
+            if (err) {
+                return res.status(401).send({
+                    status: false,
+                    message: 'Unauthorised access, please provide valid token!'
+                });
+            } else {
+                req.userData = decode;
+                req.body['role'] = decode.role;
+                if (decode.role == "user") {
+                    req.body['userId'] = decode._id;
+                    next();
+                } else {
+                    return res.status(401).send({
+                        status: false,
+                        message: 'Unauthorised access'
+                    });
+                }
+            }
+        });
+    } else {
+        /**
+         * @description:if there is no token return an error
+         **/
+        return res.send({
+            status: false,
+            message: 'No token provided!!'
+        });
+    }
+}
