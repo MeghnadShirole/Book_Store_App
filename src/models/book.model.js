@@ -8,10 +8,10 @@ const bookSchema = new Schema({
             type: String,
         },
         price: {
-            type: String,
+            type: Number,
         },
         quantity: {
-            type: String,
+            type: Number,
         },
         description: {
             type: String,

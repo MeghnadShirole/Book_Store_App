@@ -1,0 +1,28 @@
+{
+    "validBook": {
+        "title": "Two states",
+        "author": "Chetan Bhagat ",
+        "price": "$40",
+        "quantity": "100"
+    },
+    "invalidBook": {
+        "title": "",
+        "author": "",
+        "price": "",
+        "quantity": ""
+    },
+
+    "validUpdate": {
+        "title": "Two states",
+        "author": "Chetan Bhagat ",
+        "price": "$50",
+        "quantity": "500"
+    },
+
+    "invalidUpdate": {
+        "title": "",
+        "author": "",
+        "price": "",
+        "quantity": ""
+    }
+}
